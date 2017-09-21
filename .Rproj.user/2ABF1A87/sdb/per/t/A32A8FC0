@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "library(RODBC)\nlibrary(reshape2)\nlibrary(dplyr)\nlibrary(readr)\n\nsetwd(\"C:/Users/bgillis/Documents/GitHub/loading-sep2017-reporting\")\nsource(\"loading the client level data function.R\")\n\ncon.text <- \"DRIVER=SQL Server Native Client 11.0;Database=testing;Server=UWCO-BGILLISLT;Port=1433;UID=bgillis;PWD=sweetness4\"\ncon <- con <- odbcDriverConnect(con.text)\n\n##\n##  Still need to set up a way to stop loading the ones I've already loaded\n##\n\n# get data files\ndir <- \"C:/Users/bgillis/Desktop/CSVs provided by Agencies/\"\nfiles <- list.files(dir)\n\n\n# for test\nf <- files[1]\n\n# Run the loop\nx0 <- data.frame()\n\n\nfor (f in files) {\n  y = load_cld(dir, f)\n  x0 <- rbind(x0, y)\n}\n\n\nsqlQuery(con, \"Drop Table if Exists client_level_data_staging\")\nsqlSave(con, x0, \"client_level_data_staging\", rownames = F)\n\n\n\n\n\n\n\n",
+    "created" : 1505834697553.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4026657353",
+    "id" : "A32A8FC0",
+    "lastKnownWriteTime" : 1505913554,
+    "last_content_update" : 1505913554204,
+    "path" : "~/GitHub/loading-sep2017-reporting/cleaning and loading csv data.R",
+    "project_path" : "cleaning and loading csv data.R",
+    "properties" : {
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

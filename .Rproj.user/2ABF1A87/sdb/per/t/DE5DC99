@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "library(RODBC)\nlibrary(readxl)\n\n\n# Create mssql connection\n\ncon.text <- \"DRIVER=SQL Server Native Client 11.0;Database=testing;Server=UWCO-BGILLISLT;Port=1433;UID=bgillis;PWD=sweetness4\"\ncon <- con <- odbcDriverConnect(con.text)\n\n# load the excel file\n\ntci <- read_excel(\"C:/Users/bgillis/Desktop/tool column info.xlsx\")\n\n# QUESTION:  Should this info be managed in an excel file or is SQL?  Probably in SQL, right?\n\n# move to mssql\nsqlQuery(con, \"Drop Table if Exists tool_column_info\")\nsqlSave(con, tci, \"tool_column_info\")\n\n",
+    "created" : 1505834427976.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1580321155",
+    "id" : "DE5DC99",
+    "lastKnownWriteTime" : 1505418374,
+    "last_content_update" : 1505418374,
+    "path" : "~/GitHub/loading-sep2017-reporting/managing the tools column info.R",
+    "project_path" : "managing the tools column info.R",
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
