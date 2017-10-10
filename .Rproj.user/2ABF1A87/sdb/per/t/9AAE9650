@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "\n## This is not quite right\n\n\n\n## now we want to load the reported data\nlibrary(readr)\nlibrary(RODBC)\nlibrary(reshape2)\nlibrary(dplyr)\nsource(\"C:/Users/bgillis/Documents/R/SQL Connections.R\")\nsource(\"loading the client level data function.R\")\n\ncon <- mssql_con(\"testing\")\n\ndir = \"C:/Users/bgillis/Documents/GitHub Project Data/loading-sep2017-reporting/Full Tool Data/\"\nfiles <- list.files(dir)\n\n# added in a skip option\ns = 1\n\n\n# Run the loop\nx0 <- data.frame()\n\nfor (f in files) {\n  y = load_cld(dir, f, s)\n  x0 <- rbind(x0, y)\n}\nz\nsqlQuery(con, \"Drop Table if Exists client_level_data_from_ctk_staging\")\nsqlSave(con, x0, \"client_level_data_from_ctk_staging\", rownames = F)\n\n\n",
+    "created" : 1506340159420.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4098853396",
+    "id" : "9AAE9650",
+    "lastKnownWriteTime" : 1506364047,
+    "last_content_update" : 1506364047324,
+    "path" : "~/GitHub/loading-sep2017-reporting/using cld function with data from reports.R",
+    "project_path" : "using cld function with data from reports.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
